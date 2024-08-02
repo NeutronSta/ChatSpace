@@ -1,0 +1,348 @@
+info:
+  contact: {}
+paths:
+  /relationship/add_friend:
+    post:
+      consumes:
+      - application/json
+      description: request to add a new friend
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Friend_id
+        in: formData
+        name: Friend_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: request send successfully
+          schema:
+            type: string
+        "400":
+          description: Request failed
+          schema:
+            type: string
+      summary: AddFriend
+      tags:
+      - Relationship
+  /relationship/friend_list:
+    get:
+      consumes:
+      - application/json
+      description: return all your friend and their information
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get FriendList List successful
+          schema:
+            type: string
+        "401":
+          description: unexpect Authorization
+          schema:
+            type: string
+      summary: Get FriendList
+      tags:
+      - Relationship
+  /relationship/friend_request_list:
+    get:
+      consumes:
+      - application/json
+      description: Provide every name of user request to be your friend
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get Request List successful
+          schema:
+            type: string
+        "401":
+          description: unexpect Authorization
+          schema:
+            type: string
+      summary: Get friend request
+      tags:
+      - Relationship
+  /relationship/verify:
+    post:
+      consumes:
+      - application/json
+      description: agree your friend request
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Friend_id
+        in: formData
+        name: Friend_id
+        required: true
+        type: integer
+      - description: Verify
+        in: formData
+        name: Verify(true/false)
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Record updated successfully
+          schema:
+            type: string
+        "400":
+          description: Failed to update record
+          schema:
+            type: string
+        "401":
+          description: Authentication failed
+          schema:
+            type: string
+      summary: Verify request
+      tags:
+      - Relationship
+  /upload_files:
+    post:
+      consumes:
+      - multipart/form-data
+      description: upload files in all types
+      parameters:
+      - description: Authorization token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Type of the file
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: File to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'id: User ID, message: Upload status message, path: URL to
+            the uploaded file'
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: 'error: Failed to create directory'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: 'error: Error message for internal server error'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: upload files
+      tags:
+      - message
+  /user/avatar:
+    post:
+      consumes:
+      - multipart/form-data
+      description: upload user avatar in png form
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: picture
+        in: formData
+        name: avatar
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Update avatar successfully
+          schema:
+            type: string
+        "400":
+          description: Update avatar failed
+          schema:
+            type: string
+      summary: Change user avatar
+      tags:
+      - user
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: User login
+      parameters:
+      - description: name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Password
+        in: formData
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful
+          schema:
+            type: string
+        "400":
+          description: Please enter password
+          schema:
+            type: string
+        "401":
+          description: Authentication failed
+          schema:
+            type: string
+      summary: Login
+      tags:
+      - user
+  /user/my_info:
+    get:
+      consumes:
+      - application/json
+      description: Provide current user's information
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: unexpect Authorization
+          schema:
+            type: string
+      summary: Get my_info
+      tags:
+      - user
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: register a new user
+      parameters:
+      - description: name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Password
+        in: formData
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User registered successfully
+          schema:
+            type: string
+        "400":
+          description: User already exists
+          schema:
+            type: string
+      summary: register user
+      tags:
+      - user
+  /user/update_password:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint to change user password
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Old password
+        in: formData
+        name: old_password
+        required: true
+        type: string
+      - description: New password
+        in: formData
+        name: new_password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password updated successfully
+          schema:
+            type: string
+        "400":
+          description: Unknown error
+          schema:
+            type: string
+      summary: Change user password
+      tags:
+      - user
+  /user/update_username:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint to change username
+      parameters:
+      - description: Authentication token
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: new_name
+        in: formData
+        name: new_name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Username updated successfully
+          schema:
+            type: string
+        "400":
+          description: Failed to update username
+          schema:
+            type: string
+      summary: Change user username
+      tags:
+      - user
+swagger: "2.0"

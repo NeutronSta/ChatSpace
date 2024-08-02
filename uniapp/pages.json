@@ -1,0 +1,77 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+	{
+		"path" : "pages/auth/login",
+		"style" : 
+		{
+			"navigationBarTitleText" : "登录"
+		}
+	},
+	{
+		"path" : "pages/auth/register",
+		"style" : 
+		{
+			"navigationBarTitleText" : "注册"
+		}
+	},
+	{
+		"path" : "pages/chat/detail",
+		"style" : 
+		{
+			"navigationBarTitleText" : "聊天详情",
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path" : "pages/friends/FriendsList",
+		"style" : 
+		{
+			"navigationBarTitleText" : "好友列表",
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path" : "pages/friends/FriendsAdd",
+		"style" : 
+		{
+			"navigationBarTitleText" : "添加好友",
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path" : "pages/settings/profile",
+		"style" : 
+		{
+			"navigationBarTitleText" : "账户详情",
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path" : "pages/friends/FriendsRequests",
+		"style" : 
+		{
+			"navigationBarTitleText" : "好友申请",
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path" : "pages/settings/ChangePassword",
+		"style" : 
+		{
+			"navigationBarTitleText" : "修改密码",
+			"navigationStyle": "custom"
+		}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	}
+}
